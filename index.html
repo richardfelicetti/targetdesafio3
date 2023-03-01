@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Percentual de Faturamento Mensal por Estado</title>
+  </head>
+  <body>
+    <h1>Percentual de Faturamento Mensal por Estado</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Estado</th>
+          <th>Faturamento Mensal</th>
+          <th>Percentual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SP</td>
+          <td>R$67.836,43</td>
+          <td id="percentual-sp"></td>
+        </tr>
+        <tr>
+          <td>RJ</td>
+          <td>R$36.678,66</td>
+          <td id="percentual-rj"></td>
+        </tr>
+        <tr>
+          <td>MG</td>
+          <td>R$29.229,88</td>
+          <td id="percentual-mg"></td>
+        </tr>
+        <tr>
+          <td>ES</td>
+          <td>R$27.165,48</td>
+          <td id="percentual-es"></td>
+        </tr>
+        <tr>
+          <td>Outros</td>
+          <td>R$19.849,53</td>
+          <td id="percentual-outros"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const faturamentoMensalPorEstado = {
+        SP: 67836.43,
+        RJ: 36678.66,
+        MG: 29229.88,
+        ES: 27165.48,
+        Outros: 19849.53,
+      };
+
+      const totalFaturamentoMensal = Object.values(faturamentoMensalPorEstado).reduce((total, valor) => total + valor, 0);
+
+      for (let estado in faturamentoMensalPorEstado) {
+        const percentual = (faturamentoMensalPorEstado[estado] / totalFaturamentoMensal) * 100;
+        document.getElementById(`percentual-${estado.toLowerCase()}`).textContent = `${percentual.toFixed(2)}%`;
+      }
+    </script>
+  </body>
+</html>
